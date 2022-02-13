@@ -15,23 +15,24 @@ const explanationArray = [
 for(let i = 0; i < 1; i++){
   for(let j = 0; j < 3; j++){
     let choice = document.getElementById(`choice${i}-${j}`);
-    let answerContainer = document.getElementById(`answer-container${i}`);
+    let choiceCorrect = document.getElementById(`choice${i}-${0}`);
+    let answerBox = document.getElementById(`answer-box${i}`);
     let answer = document.getElementById(`answer${i}`);
     let explanation = document.getElementById(`explanation${i}`);
     choice.addEventListener('click', () => {
       if(choice.innerHTML === choiceArray[i][0]){
-        console.log('ok');
-        choice.style.color = 'white';
-        choice.style.backgroundColor = 'blue';
         answer.innerHTML = '正解!';
         answer.style.borderBottomColor = 'blue';
       }
       else{
-        console.log('no');
+        choice.style.color = 'white';
+        choice.style.backgroundColor = 'red';
         document.getElementById(`answer${i}`).innerHTML = '不正解!'
         answer.style.borderBottomColor = 'red';
       }
-      answerContainer.style.display = 'block';
+      choiceCorrect.style.color = 'white';
+      choiceCorrect.style.backgroundColor = 'blue';
+      answerBox.style.display = 'block';
       explanation.innerHTML = explanationArray[i];
 
       // 正解は「たかなわ」です！

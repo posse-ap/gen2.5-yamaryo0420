@@ -2,11 +2,10 @@
   margin: 0;
   padding: 0;
 }
-
 body{
   background: #fff;
 }
-#answer-container0 {
+#answer-box0 {
   display: none;
   padding: 20px;
   margin: 10px 0;
