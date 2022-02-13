@@ -1,3 +1,5 @@
+const questionLength = 1;
+const choiceLength = 3;
 const choiceArray = [
   ['たかなわ', 'たかわ', 'こうわ'],
   ['かめいど', 'かめと', 'かめど'],
@@ -26,17 +28,23 @@ const explanationArray = [
   '正解は「こぐれ」です!'
 ];
 
-for(let i = 0; i < 1; i++){
+for(let i = 0; i < questionLength; i++){
   document.getElementById(`title${i}`).innerHTML = `${i + 1}. この地名はなんて読む?`;
-  for(let j = 0; j < 3; j++){
+  for(let j = choiceLength - 1; j >= 0; j--){ //選択肢をシャッフル
+    let n = Math.floor(Math.random() * (j + 1));
+    [choiceArray[i][j], choiceArray[i][n]] = [choiceArray[i][n], choiceArray[i][j]];
+    document.getElementById(`choice${i}${j}`).innerHTML =  choiceArray[i][j];
+  }
+  for(let j = 0; j < choiceLength; j++){
     let choice = document.getElementById(`choice${i}${j}`); //選択肢
-    let choiceCorrect = document.getElementById(`choice${i}${0}`); //正解の選択肢
-    let answerBox = document.getElementById(`answer-box${i}`);
-    let answer = document.getElementById(`answer${i}`);
-    let explanation = document.getElementById(`explanation${i}`);
-    choice.innerHTML = choiceArray[i][j]; //選択肢の表示
+    let answerBox = document.getElementById(`answer-box${i}`); //追加BOX
+    let answer = document.getElementById(`answer${i}`); //正誤判定
+    let explanation = document.getElementById(`explanation${i}`); //解説文
+    
     choice.addEventListener('click', () => { //クリック時の動作
       if(choice.innerHTML === correctArray[i]){ //正解
+        choice.style.color = 'white';
+        choice.style.backgroundColor = 'blue';
         answer.innerHTML = '正解!';
         answer.style.borderBottomColor = 'blue';
       }
@@ -46,13 +54,12 @@ for(let i = 0; i < 1; i++){
         answer.innerHTML = '不正解!'
         answer.style.borderBottomColor = 'red';
       }
-      choiceCorrect.style.color = 'white';
-      choiceCorrect.style.backgroundColor = 'blue';
       answerBox.style.display = 'block';
       explanation.innerHTML = explanationArray[i];
       //未実装一覧
+      //不正解時に正解の背景色を青、文字色を白にする
       // ボタンを押したらページが動く
       // 一度クリックしたら選べない
-    })
+    });
   }
 }
