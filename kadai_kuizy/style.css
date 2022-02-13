@@ -5,6 +5,12 @@
 body{
   background: #fff;
 }
+a {
+  text-decoration: none;
+}
+.choice a {
+  color: black;
+}
 .answer-box {
   display: none;
   padding: 20px;
