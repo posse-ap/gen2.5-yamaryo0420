@@ -8,16 +8,50 @@ body{
 a {
   text-decoration: none;
 }
-.choice a {
-  color: black;
+
+.main {
+  max-width: 650px;
+  width: 100%;
+  margin: 0 auto;
 }
-.answer-box {
-  display: none;
-  padding: 20px;
+.box-container {
+  width: auto;
+  margin: 30px 15px;
+}
+.titles h2 {
+  font-size: 17px;
+  line-height: 20px;
+  font-weight: 600;
+  display: inline-block;
+}
+.titles h2::after {
+  display: block;
+  margin-top: 10px;
+  width: 90pt;
+  height: 2px;
+  background-color: #00ab36;
+  content: '';
+}
+.images {
   margin: 10px 0;
-  background-color: gray;
+}
+.image {
+  width: 100%;
+}
+.choice {
+  border: 1px solid #ebebeb;
+  padding: 13px;
+  margin: 10px 0;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 2px -2px rgb(0 0 0 / 13%);
 }
 .answer {
+  font-size: 1pc;
+  line-height: 20px;
+  font-weight: 600;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #287dff;;
   display: inline-block;
-  border-bottom: 1px solid;
 }

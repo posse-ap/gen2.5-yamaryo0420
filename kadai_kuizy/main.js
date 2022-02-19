@@ -40,21 +40,23 @@ for(let i = 0; i < questionLength; i++){
     let answerBox = document.getElementById(`answer-box${i}`); //追加BOX
     let answer = document.getElementById(`answer${i}`); //正誤判定
     let explanation = document.getElementById(`explanation${i}`); //解説文
-    
     choice.addEventListener('click', () => { //クリック時の動作
       if(choice.innerHTML === correctArray[i]){ //正解
-        choice.style.color = 'white';
-        choice.style.backgroundColor = 'blue';
+        choice.style.color = '#fff';
+        choice.style.backgroundColor = '#287dff';
         answer.innerHTML = '正解!';
-        answer.style.borderBottomColor = 'blue';
+        answer.style.borderBottomColor = '#287dff';
       }
       else{ //不正解
-        choice.style.color = 'white';
-        choice.style.backgroundColor = 'red';
+        choice.style.color = '#fff';
+        choice.style.backgroundColor = '#ff5128';
         answer.innerHTML = '不正解!'
-        answer.style.borderBottomColor = 'red';
+        answer.style.borderBottomColor = '#ff5128';
       }
       answerBox.style.display = 'block';
+      answerBox.style.background = '#f5f5f5';
+      answerBox.style.padding ='17px';
+      answerBox.style.borderRadius = '3px';
       explanation.innerHTML = explanationArray[i];
       //未実装一覧
       //不正解時に正解の背景色を青、文字色を白にする
