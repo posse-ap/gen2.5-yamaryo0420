@@ -1,5 +1,17 @@
-const questionLength = 1;
+const questionLength = 10;
 const choiceLength = 3;
+const imageArray = [
+  'images/takanawa.png',
+  'images/kameido.png',
+  'images/kouzimachi.png',
+  'images/onarimon.png',
+  'images/todoroki.png',
+  'images/syakuzi.png',
+  'images/zoushiki.png',
+  'images/okachimachi.png',
+  'images/shishibone.png',
+  'images/kogure.png'
+];
 const choiceArray = [
   ['たかなわ', 'たかわ', 'こうわ'],
   ['かめいど', 'かめと', 'かめど'],
@@ -28,28 +40,54 @@ const explanationArray = [
   '正解は「こぐれ」です!'
 ];
 
+let contents = '';
 for(let i = 0; i < questionLength; i++){
-  document.getElementById(`title${i}`).innerHTML = `${i + 1}. この地名はなんて読む?`;
-  for(let j = choiceLength - 1; j >= 0; j--){ //選択肢をシャッフル
+  contents += `<div class="box-container">`
+  + `<div class="titles">`
+  + `<h2 class="titles">${i + 1}. この地名はなんて読む？</h2>`
+  + `</div>`
+  + `<img class="image" src="${imageArray[i]}">`
+  + `</div>`;
+  for(let j = choiceLength - 1; j >= 0; j--){ 
     let n = Math.floor(Math.random() * (j + 1));
-    [choiceArray[i][j], choiceArray[i][n]] = [choiceArray[i][n], choiceArray[i][j]];
-    document.getElementById(`choice${i}${j}`).innerHTML =  choiceArray[i][j];
+    [choiceArray[i][j], choiceArray[i][n]] = [choiceArray[i][n], choiceArray[i][j]];//選択肢をシャッフル
+    contents += `<div>`
+    + `<div class="choice" id="choice${i}${j}">${choiceArray[i][j]}</div>`
+    + `</div>`;
   }
+  contents += `<div id="answer-box${i}">`
+    + `<div id="answer${i}" class="answer"></div>`
+    + `<div id="explanation${i}"></div>`
+    + `</div>`;
+  
+    // contentsという変数にHTMLを入れている
+}
+document.getElementById('main').innerHTML = contents; // htmlとして出力する
+
+
+for(let i = 0; i < questionLength; i++){
   for(let j = 0; j < choiceLength; j++){
-    let choice = document.getElementById(`choice${i}${j}`); //選択肢
+    let choices = document.getElementById(`choice${i}${j}`); //選択肢
     let answerBox = document.getElementById(`answer-box${i}`); //追加BOX
     let answer = document.getElementById(`answer${i}`); //正誤判定
     let explanation = document.getElementById(`explanation${i}`); //解説文
-    choice.addEventListener('click', () => { //クリック時の動作
-      if(choice.innerHTML === correctArray[i]){ //正解
-        choice.style.color = '#fff';
-        choice.style.backgroundColor = '#287dff';
+
+    choices.addEventListener('click', () => { //クリック時の動作
+      for (let k = 0; k < choiceLength; k++) {
+        let choice = document.getElementById(`choice${i}${k}`);
+        choice.style.pointerEvents = "none";
+        if(choice.innerHTML === correctArray[i]){
+          choice.style.color = '#fff';
+          choice.style.backgroundColor = '#287dff';
+        }
+      }
+      if(choices.innerHTML === correctArray[i]){ //正解
         answer.innerHTML = '正解!';
         answer.style.borderBottomColor = '#287dff';
       }
       else{ //不正解
-        choice.style.color = '#fff';
-        choice.style.backgroundColor = '#ff5128';
+        choices.style.color = '#fff';
+        choices.style.backgroundColor = '#ff5128';
         answer.innerHTML = '不正解!'
         answer.style.borderBottomColor = '#ff5128';
       }
@@ -58,10 +96,9 @@ for(let i = 0; i < questionLength; i++){
       answerBox.style.padding ='17px';
       answerBox.style.borderRadius = '3px';
       explanation.innerHTML = explanationArray[i];
+
       //未実装一覧
-      //不正解時に正解の背景色を青、文字色を白にする
       // ボタンを押したらページが動く
-      // 一度クリックしたら選べない
     });
   }
 }

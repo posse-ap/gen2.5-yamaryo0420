@@ -9,14 +9,14 @@ a {
   text-decoration: none;
 }
 
-.main {
+#main {
   max-width: 650px;
   width: 100%;
   margin: 0 auto;
 }
 .box-container {
   width: auto;
-  margin: 30px 15px;
+  margin: 15px;
 }
 .titles h2 {
   font-size: 17px;
@@ -31,9 +31,6 @@ a {
   height: 2px;
   background-color: #00ab36;
   content: '';
-}
-.images {
-  margin: 10px 0;
 }
 .image {
   width: 100%;
