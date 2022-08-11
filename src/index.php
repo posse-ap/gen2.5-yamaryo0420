@@ -1,3 +1,10 @@
+<?php
+require_once('db-connect.php');
+$stmt=$db->query('SELECT * FROM big_questions');
+$big_questions= $stmt->fetchAll();
+var_dump($big_questions);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
